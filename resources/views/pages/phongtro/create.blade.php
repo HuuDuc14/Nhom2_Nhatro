@@ -34,10 +34,11 @@
             <div class="form-group">
                 <label for="trang_thai">Trạng thái</label>
                 <select class="form-control" name="trang_thai">
-                    <option selected value="trống" {{ old('trang_thai') == 'trống' ? 'selected' : '' }}>Còn trống</option>
+                    <option value="trống" {{ old('trang_thai', 'trống') == 'trống' ? 'selected' : '' }}>Còn trống</option>
                     <option value="đã thuê" {{ old('trang_thai') == 'đã thuê' ? 'selected' : '' }}>Đã thuê</option>
                 </select>
             </div>
+
             <button type="submit" class="btn btn-primary">Thêm mới</button>
         </form>
     </div>
