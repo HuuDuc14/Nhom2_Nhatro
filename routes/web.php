@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PhongTroController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,15 @@ Route::get('/phongtro/edit/{id}', [PhongTroController::class, 'edit'])->name('ph
 Route::post('/phongtro/update', [PhongTroController::class,'update'])->name('phongtro.update');
 
 Route::get('/phongtro/delete/{id}', [PhongTroController::class, 'delete'])->name('phongtro.delete');
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+// Route::get('/recoverpassword', [AuthController::class, 'showRecoverPasswordForm'])->name('recoverpassword');
+// Route::post('/recoverpassword', [AuthController::class, 'recoverpassword']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/recoverpassword', [AuthController::class, 'showRecoverPasswordForm'])->name('recoverpassword');
+Route::post('/recoverpassword', [AuthController::class, 'recoverpassword']);
+Route::get('/rememberpassword', [AuthController::class, 'showRememberPasswordForm'])->name('rememberpassword');
+Route::post('/rememberpassword', [AuthController::class, 'rememberpassword']);
