@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'chutro' => [
+            'driver' => 'session',
+            'provider' => 'chutros',
+        ],
     ],
 
     /*
@@ -63,6 +67,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'chutros' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\ChuTro::class,
+            
         ],
 
         // 'users' => [

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,23 +124,57 @@
             0% {
                 transform: rotate(0deg);
             }
+
             100% {
                 transform: rotate(360deg);
             }
         }
+
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .error {
+            color: #f8d7da;
+            font-size: 12px;
+            margin-top: 5px;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="circle"></div>
         <h1>Login</h1>
-        <form action="#" method="POST">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{route('login')}}" method="POST">
+            @csrf
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Enter your email" required>
-            
+            <input type="email" name="email" id="email" placeholder="Enter your email" value="{{ old('email') }}"
+                required>
+            @if ($errors->has('email'))
+                <div class="error">{{ $errors->first('email') }}</div>
+            @endif
+
             <label for="password">Password</label>
             <input type="password" name="password" id="password" placeholder="Enter your password" required>
-            
+            @if ($errors->has('password'))
+                <div class="error">{{ $errors->first('password') }}</div>
+            @endif
+
             <button type="submit">Login</button>
 
             <div class="form-links">
@@ -149,4 +184,5 @@
         </form>
     </div>
 </body>
+
 </html>

@@ -40,17 +40,28 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        // dd($request->all()); // Kiểm tra dữ liệu đầu vào
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
         ]);
+        // $chutro = new Chutro();
+        // $chutro->find();
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/');
+          // Kiểm tra thông tin xác thực
+     $credentials = ['email' => $request->email, 'password' =>  $request->password];
+    
+    if (Auth::guard('chutro')->attempt($credentials)) {
+            //$request->session()->regenerate(); // Bảo mật session
+            return redirect()->route('phongtro.index'); // Điều hướng tới trang phòng trọ
+    }else{
+            // dd('Authentication failed');
+            return back()->withErrors(['login_error' => 'Invalid email or password']);
+    }
         }
 
-        return back()->withErrors(['email' => 'Invalid email or password']);
-    }
+        
+    
 
     public function logout()
     {
@@ -59,7 +70,7 @@ class AuthController extends Controller
     }
     public function showRecoverPasswordForm()
 {
-    return view('auth.recoverpassword'); // Đảm bảo file `recover.blade.php` tồn tại trong thư mục views/auth/passwords.
+    return view('auth.recoverpassword');
 }
 
 public function showRememberPasswordForm()

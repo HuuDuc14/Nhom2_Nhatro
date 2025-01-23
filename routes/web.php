@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::get('/phongtro', [PhongTroController::class,'index'])->name('phongtro.index');
 
+
 Route::get('/phongtro/search', [PhongTroController::class,'search'])->name('phongtro.search');
 
 Route::get('/phongtro/create', [PhongTroController::class,'create'])->name('phongtro.create');
@@ -42,3 +43,4 @@ Route::get('/recoverpassword', [AuthController::class, 'showRecoverPasswordForm'
 Route::post('/recoverpassword', [AuthController::class, 'recoverpassword']);
 Route::get('/rememberpassword', [AuthController::class, 'showRememberPasswordForm'])->name('rememberpassword');
 Route::post('/rememberpassword', [AuthController::class, 'rememberpassword']);
+
